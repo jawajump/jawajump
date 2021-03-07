@@ -675,7 +675,33 @@ window.onload = function () {
     }
   }
 
+  function cantinaSound() {
+    var sound = document.getElementById("sound-cantina");
+    sound.play();
+  }
+
+  function startSound() {
+    var sound = document.getElementById("sound-start");
+    sound.play();
+  }
+
+  function gameOverSound() {
+    var sound = document.getElementById("sound-game-over");
+    sound.play();
+  }
+
+  function utiniSound() {
+    var sound = document.getElementById("sound-utini");
+    sound.play();
+  }
+
+  function jumpSound() {
+    var sound = document.getElementById("sound-jump");
+    sound.play();
+  }
+
   function gameControlJump() {
+    jumpSound();
     isJumping = true;
     spaceTimer();
 
@@ -767,6 +793,8 @@ window.onload = function () {
   }
 
   function startGame() {
+    startSound();
+    cantinaSound();
     document.querySelectorAll('.enemy').forEach(e => e.remove());
 
     _all.gsap.set(character, {
@@ -814,6 +842,7 @@ window.onload = function () {
     });
   });
   restartGameBtn.addEventListener("click", function () {
+    utiniSound();
     this.blur();
 
     _all.gsap.to(restartScreen, {
@@ -883,6 +912,7 @@ window.onload = function () {
 
 
   function gameOver() {
+    gameOverSound();
     gameIsRunning = false;
     jawaFail();
 
