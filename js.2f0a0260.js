@@ -850,7 +850,7 @@ window.onload = function () {
 
     _all.gsap.to(floor, {
       backgroundPosition: "-80px",
-      duration: enemySpeed / 15,
+      duration: enemySpeed / 8,
       ease: "none",
       repeat: -1
     });
