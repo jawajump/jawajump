@@ -26,9 +26,14 @@
       <meta name="theme-color" content="#302322">      
    </head>
    <body>
-      <div id="game-bar">         
-         <div class="progress">Score: <span id="game-progress"></span></div>
-         <div class="high-score">Highest score: <span id="highest-score">0</span></div>
+      <div id="game-bar">
+         <div>
+            <div class="game-bar-scores">
+               <div class="progress">Score: <span id="game-progress"></span></div>
+               <div class="high-score">Highest score: <span id="highest-score">0</span></div>            
+            </div>
+            <button id="toggle-mute">Toggle Sound</button>
+         </div>
       </div>
       <div id="game">
          <div class="background" id="bg-0"></div>
@@ -58,3 +63,22 @@
       <script src="/js.2f0a0260.js"></script> 
    </body>
 </html>
+
+<!--
+TODO -
+
+
+
+add mute button to bar that saves prefs via localstorage (mute tab)
+
+// Mute a singular HTML5 element
+function muteMe(elem) {
+    elem.muted = true;
+    elem.pause();
+}
+
+// Try to mute all video and audio elements on the page
+function mutePage() {
+    document.querySelectorAll("video, audio").forEach( elem => muteMe(elem) );
+}
+-->

@@ -673,7 +673,48 @@ window.onload = function () {
 
       _all.gsap.killTweensOf(spaceTimer);
     }
+  } // localStorage.clear();
+  // Sounds
+
+
+  const toggleMute = document.getElementById("toggle-mute");
+
+  function checkSounds() {
+    var jawaSounds = localStorage.getItem('jawaSoundsMuted');
+
+    if (jawaSounds == null) {
+      localStorage.setItem('jawaSoundsMuted', 'sound-on');
+    } else if (jawaSounds == 'sound-on') {
+      enableSounds();
+    } else if (jawaSounds == 'sound-off') {
+      disableSounds();
+    }
   }
+
+  function disableSounds() {
+    document.querySelectorAll("audio").forEach(elem => elem.muted = true);
+    toggleMute.classList.add('muted');
+  }
+
+  function enableSounds() {
+    document.querySelectorAll("audio").forEach(elem => elem.muted = false);
+    toggleMute.classList.remove('muted');
+  }
+
+  function soundToggle() {
+    var jawaSounds = localStorage.getItem('jawaSoundsMuted');
+
+    if (jawaSounds == 'sound-on') {
+      disableSounds();
+      localStorage.setItem('jawaSoundsMuted', 'sound-off');
+    } else if (jawaSounds == 'sound-off') {
+      enableSounds();
+      localStorage.setItem('jawaSoundsMuted', 'sound-on');
+    }
+  }
+
+  checkSounds();
+  toggleMute.addEventListener("click", soundToggle);
 
   function cantinaSound() {
     var sound = document.getElementById("sound-cantina");
@@ -700,6 +741,15 @@ window.onload = function () {
     sound.play();
   }
 
+  window.addEventListener('blur', disableSounds);
+  window.addEventListener('focus', function () {
+    var jawaSounds = localStorage.getItem('jawaSoundsMuted');
+
+    if (jawaSounds == 'sound-on') {
+      enableSounds();
+    }
+  }); // Jump and land
+
   function gameControlJump() {
     jumpSound();
     isJumping = true;
@@ -716,7 +766,8 @@ window.onload = function () {
     _all.gsap.killTweensOf(spaceTimer);
 
     endJump();
-  }
+  } // Inputs for jumping
+
 
   document.addEventListener("touchstart", function () {
     if (!isJumping && gameIsRunning) {
