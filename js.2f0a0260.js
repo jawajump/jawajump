@@ -625,7 +625,7 @@ window.onload = function () {
       backgroundPosition: '0% center'
     }, {
       backgroundPosition: '50% center',
-      duration: 1,
+      duration: 0.75,
       repeat: -1,
       delay: 0.25,
       ease: "steps(1)"
