@@ -559,7 +559,7 @@ window.onload = function () {
         enemySpeed = 50 / 300;
         return enemySpeed.toFixed(3);
       }
-    }, 2500);
+    }, 2000);
   }
 
   function calcEnemySpeed() {
@@ -615,8 +615,7 @@ window.onload = function () {
   function enemyHitTest(element) {
     var selectObject = element;
 
-    if (_all.Draggable.hitTest(character, selectObject, '20%')) {
-      gameOver();
+    if (_all.Draggable.hitTest(character, selectObject, '20%')) {// gameOver();
     }
   }
 
@@ -760,10 +759,17 @@ window.onload = function () {
   }
 
   window.onblur = newTitle;
-  window.onfocus = oldTitle; // Jump and land
+  window.onfocus = oldTitle;
+
+  function vibration(time) {
+    if ("vibrate" in navigator) {
+      window.navigator.vibrate(time);
+    }
+  } // Jump and land
+
 
   function gameControlJump() {
-    window.navigator.vibrate(5);
+    vibration(5);
     jumpSound();
     isJumping = true;
     spaceTimer();
@@ -973,7 +979,7 @@ window.onload = function () {
 
   function gameOver() {
     gameOverSound();
-    window.navigator.vibrate(500);
+    vibration(500);
     gameIsRunning = false;
     jawaFail();
 
@@ -993,7 +999,7 @@ window.onload = function () {
 
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function () {
-      window.navigator.vibrate(5);
+      vibration(5);
     });
   }
 };
