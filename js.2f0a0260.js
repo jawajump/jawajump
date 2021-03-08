@@ -615,8 +615,7 @@ window.onload = function () {
   function enemyHitTest(element) {
     var selectObject = element;
 
-    if (_all.Draggable.hitTest(character, selectObject, '20%')) {
-      gameOver();
+    if (_all.Draggable.hitTest(character, selectObject, '20%')) {// gameOver();
     }
   }
 
