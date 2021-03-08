@@ -615,7 +615,8 @@ window.onload = function () {
   function enemyHitTest(element) {
     var selectObject = element;
 
-    if (_all.Draggable.hitTest(character, selectObject, '20%')) {// gameOver();
+    if (_all.Draggable.hitTest(character, selectObject, '20%')) {
+      gameOver();
     }
   }
 
@@ -891,6 +892,7 @@ window.onload = function () {
 
   startGameBtn.addEventListener("click", function () {
     this.blur();
+    this.disabled = true;
 
     _all.gsap.set(floor, {
       autoAlpha: 1
@@ -912,8 +914,8 @@ window.onload = function () {
     });
   });
   restartGameBtn.addEventListener("click", function () {
-    utiniSound();
     this.blur();
+    utiniSound();
 
     _all.gsap.to(restartScreen, {
       scale: 1.25,
@@ -922,6 +924,8 @@ window.onload = function () {
       ease: "power2.out",
       onComplete: startGame
     });
+
+    this.disabled = true;
   });
 
   function jawaFail() {
@@ -946,10 +950,15 @@ window.onload = function () {
   function restartScreenAnim() {
     _all.gsap.to(restartScreen, {
       autoAlpha: 1,
-      duration: 1.5,
-      ease: "power1.in",
-      delay: 1
+      duration: 0.8,
+      ease: "power1.inOut",
+      delay: 1,
+      onComplete: enableRestartBtn
     });
+  }
+
+  function enableRestartBtn() {
+    restartGameBtn.disabled = false;
   } // localStorage.clear();    
 
 
